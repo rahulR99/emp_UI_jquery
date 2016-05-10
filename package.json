@@ -1,0 +1,15 @@
+{
+  "name": "ems",
+  "version": "1.0.0",
+  "description": "EmployeeManagementSystem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	 "start":"node src\\server\\server.js"
+  },
+  "author": "Rahul",
+  "license": "ISC",
+  "dependencies": {
+	  "express": "^4.13.4"
+  }
+}

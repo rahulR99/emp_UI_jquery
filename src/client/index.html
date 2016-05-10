@@ -1,0 +1,110 @@
+<html>
+	<head>
+		 <script src="jquery/dist/jquery.min.js"></script>
+		<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+         <script src="js/jsrender.min.js"></script>
+		<script src="underscore/underscore-min.js"></script>
+		<script src="backbone/backbone-min.js"></script>
+		<script src="js/router.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">EMS</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+		  <li><a href="#/list">Show List</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle shiftright" data-toggle="dropdown" href="#">Operations<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/add">ADD</a></li>
+            <li><a href="#/update">UPDATE</a></li>
+            <li><a href="#/delete">DELETE</a></li>
+          </ul>
+        </li>
+		  <li><div class="shiftright"></div></li>
+		<li>
+			<div>
+				<input type="text" class="input-lg searchBox" placeholder="Search by NAME,ID"/>
+				<button class="btn btn-success">Search</button>
+			</div>
+		  </li>
+		<li></li>
+        <li><a href="#"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container">
+  <h3>MANAGEMENT SYSTEM</h3>
+	<div class="col-sm-6">
+		<table class="table">
+			<form role="form">
+			<tr>
+				<td><label>Name:</label></td>
+				<td><input type="text" name="name" class="form-control"/></td>
+			</tr>
+			<tr>
+				<td><label>Designation:</label></td>
+				<td><input type="text" name="name" class="form-control"/></td>
+			</tr>
+			<tr>
+				<td><label>Salary</label></td>
+				<td><input type="number" name="name" class="form-control"/></td>
+			</tr>
+			<tr>
+				<td><label>Address</label></td>
+				<td><div>
+					<label>Street:</label>
+					<input type="text" name="street" class="form-control" />
+					<label>City:</label>
+					<input type="text" name="city" class="form-control"/>
+					<label>State:</label>
+					<input type="text" name="state" class="form-control"/>
+					<label>ZipCode:</label>
+					<input type="number" name="zipCode" class="form-control"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Department</label></td>
+				<td>
+					<div>
+						<label>Id:</label>
+						<input type="number" name="deptId" class="form-control"/>
+						<label>Name:</label>
+						<input type="text" name="deptName" class="form-control"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="Add Employee" class="btn btn-info active btn-lg btn-primary btn-block"/>
+				</td>
+			</tr>
+			</form>	
+		</table>
+	</div>
+	<div class="col-sm-6" id="showList">
+		
+	</div>
+</div>
+
+	</body>
+</html>
