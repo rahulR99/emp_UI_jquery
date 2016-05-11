@@ -60,6 +60,7 @@ $(document).ready(function(){
 	});
 	showList();
 	homePageDisplay();
+	addNewEmployee();
 	$("#homeDisplayId").click(function(){
 		$("#homePageDataDisplay").show();
 		$("#showList").hide();
@@ -70,12 +71,13 @@ $(document).ready(function(){
 function homePageDisplay(){
 	$.get("templates/home.tmpl", function(value) {
   var tmpl =$.templates(value);
-   var data={emp:employee.value};
+   //var data={emp:employee.value};
   var html = tmpl.render();
   $("#homePageDataDisplay").html(html); 
 	
 });
 };
+
 function showList(){	
 $.get("templates/showlist.tmpl", function(value) {
   var tmpl =$.templates(value); 
@@ -84,3 +86,14 @@ $.get("templates/showlist.tmpl", function(value) {
   $("#showList").html(html); 
 });
 };
+
+function addNewEmployee(){	
+$.get("templates/addNewEmployee.tmpl", function(value) {
+  var tmpl =$.templates(value); 
+  // var data ={emp:employee.value};
+  var html = tmpl.render(); 
+  $("#addEmployeeColId").html(html);
+});
+};
+
+
