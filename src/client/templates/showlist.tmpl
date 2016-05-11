@@ -1,0 +1,60 @@
+<div>
+	<table class="table table-bordered">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Designation</th>
+			<th>Salary</th>
+			<th>
+				<table  class="table">
+					<tr><th colspan="4">Address</th></tr>
+					<tr>
+						<th>Street</th>
+						<th>City</th>
+						<th>State</th>
+						<th>ZipCode</th>
+					</tr>
+				</table>
+			</th>
+			<th>
+				<table  class="table">
+					<tr><th colspan="2">Department</th></tr>
+					<tr>
+						<th>Dept Id</th>
+						<th>Name</th>
+					</tr>
+				</table>
+			</th>
+			<th colspan="2">Operations</th>
+		</tr>
+		{{for emp}}
+			<tr>
+				<td>{{:empId}}</td>
+				<td>{{:empName}}</td>
+				<td>{{:desig}}</td>
+				<td>{{:salary}}</td>
+				<td>
+					<table  class="table">
+						<tr>
+							<td>{{:(address.street)}}</td>
+							<td>{{:address.city}}</td>
+							<td>{{:address.state}}</td>
+							<td>{{:address.zipCode}}</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table  class="table">
+					<tr>
+						<td>{{:dept.deptId}}</td>
+						<td>{{:dept.name}}</td>
+					</tr>
+				</table>
+			  </td>
+			  <td><a href="#edit" class="btn btn-success">Update</a></td>
+			  <td><a href="#delete" class="btn btn-danger">Delete</a></td>
+			</tr>
+			
+		{{/for}}
+	</table>
+</div>

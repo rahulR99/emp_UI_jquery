@@ -2,10 +2,11 @@
 	<head>
 		 <script src="jquery/dist/jquery.min.js"></script>
 		<script src="bootstrap/dist/js/bootstrap.min.js"></script>
-         <script src="js/jsrender.min.js"></script>
+         <script src="jsrender/jsrender.min.js"></script>
 		<script src="underscore/underscore-min.js"></script>
 		<script src="backbone/backbone-min.js"></script>
 		<script src="js/router.js"></script>
+		<script src="js/main.js"></script>
         <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
 	</head>
@@ -23,15 +24,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-		  <li><a href="#/list">Show List</a></li>
+        <li class="active"><a href="#" id="homeDisplayId">Home</a></li>
+		  <li><a href="#/list" id="showlistMenu">Show List</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle shiftright" data-toggle="dropdown" href="#">Operations<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/add">ADD</a></li>
+          <a class="dropdown-toggle shiftright" id="addnewEmployee01" data-toggle="dropdown" href="#">Add New Employee<span class="" ></span></a>
+         <!-- <ul class="dropdown-menu">
+            <li><a href="#/add" id="addNewEmployeeId">ADD NEW</a></li>
             <li><a href="#/update">UPDATE</a></li>
             <li><a href="#/delete">DELETE</a></li>
-          </ul>
+          </ul>-->
         </li>
 		  <li><div class="shiftright"></div></li>
 		<li>
@@ -52,8 +53,10 @@
 </nav>
   
 <div class="container">
+	
   <h3>MANAGEMENT SYSTEM</h3>
-	<div class="col-sm-6">
+	<div id="homePageDataDisplay" class="col-sm-12"></div>
+	<div class="col-sm-6" id="addEmployeeColId">
 		<table class="table">
 			<form role="form">
 			<tr>
@@ -62,11 +65,11 @@
 			</tr>
 			<tr>
 				<td><label>Designation:</label></td>
-				<td><input type="text" name="name" class="form-control"/></td>
+				<td><input type="text" name="desig" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Salary</label></td>
-				<td><input type="number" name="name" class="form-control"/></td>
+				<td><input type="number" name="salary" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><label>Address</label></td>
@@ -101,8 +104,7 @@
 			</form>	
 		</table>
 	</div>
-	<div class="col-sm-6" id="showList">
-		
+	<div class="col-sm-12" id="showList">	
 	</div>
 </div>
 
