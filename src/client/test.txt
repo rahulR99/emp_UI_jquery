@@ -1,2 +1,0 @@
-rfraz: For Ajax you most certainly do not need a server side language! Ajax is dumb. It only loads a text file. If you have something that is NOT a plain text file then you need a server side language to convert it to plain text in the form of JSON or XML or comma delimited text or a simple string etc. But since the OP does have a text file then all he needs to do is make sure he can access it from his web server. Still, not really a good idea to load a 3.5 MB file. – slebetman Dec 26 '10 at 7:36
-show 4 more comments

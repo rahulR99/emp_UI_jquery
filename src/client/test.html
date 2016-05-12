@@ -12,49 +12,20 @@
 	</head>
 	<body>
 		<div>
-			<a href="#" id="readData" class="btn btn-success">read Data</a>
+		<!--	<a href="#" id="readData" class="btn btn-success">read Data</a>-->
 			<a href="#" id="writeData" class="btn btn-success">write Data</a>
 		</div>
 		<script>
 			$(document).ready(function(){
-				$("#readData").click(function(){
-					readJsonFile();
-				});
 				$("#writeData").click(function(){
 					writeToFile();
 				});
 			});
-			function readJsonFile(){
-				$.ajax({
-						url:'save.txt',
-						success: function (data){
-						  document.write(data);
-							alert("data");
-						}
-					  });
-					};
-	function writeToFile(data){
-            $.post("http://localhost:8080/ems/employee/addEmployee",
-								{
-					empId:"1234",
-					empName:"rahul",
-					salary:45210,
-					desig:"SE",
-					address:{
-						street:"Ishwar Nagar",
-						city:"Thane",
-						state :"Maharashtra",
-						zipCode:477701
-						},
-					dept:{
-						deptId:1234,
-						name:"DEV"
-						}
-        		},
-        		function(data,status){
-            		alert("Data: " + data + "\nStatus: " + status);
-        		});
-        	};
+			function writeToFile(data){
+            		$.get("http://localhost:8080/ems/employee/hello",function(response){
+            				alert("Data: " + response );
+        						});
+        		};
 			</script>
 	</body>
 	
