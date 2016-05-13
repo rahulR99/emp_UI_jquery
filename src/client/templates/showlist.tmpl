@@ -1,5 +1,5 @@
 <div>
-	<table class="table table-bordered">
+	<table class="table table-bordered mytable1">
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
@@ -25,35 +25,62 @@
 					</tr>
 				</table>
 			</th>
-			<th colspan="2">Operations</th>
+			<th colspan="3">Operations</th>
 		</tr>
 		{{for emp}}
 			<tr>
 				<td>{{:empId}}</td>
-				<td>{{:empName}}
-				<input type="text" name="name" id="text_name1" class="form-control"/></td>
-				<td>{{:empDesg}}</td>
-				<td>{{:salary}}</td>
 				<td>
-					<table  class="table">
+					<p class="para_{{:#index}}">{{:empName}}</p>
+					<input type="text" value="{{:empName}}" name="name" id="text_name_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+				</td>
+				<td>
+					<p class="para_{{:#index}}">{{:empDesg}}</p>
+					<input type="text" value="{{:empDesg}}" name="name" id="text_desig_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+				</td>
+				<td>
+					<p class="para_{{:#index}}">{{:salary}}</p>
+					<input type="text" value="{{:salary}}" name="name" id="text_sal_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+				</td>
+				<td>
+					<table  class="table mytable1">
 						<tr>
-							<td>{{:(address.street)}}</td>
-							<td>{{:address.city}}</td>
-							<td>{{:address.state}}</td>
-							<td>{{:address.zipCode}}</td>
+							<td>
+								<p class="para_{{:#index}}">{{:(address.street)}}</p>
+								<input type="text" value="{{:(address.street)}}" name="name" id="text_ad_street_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+							</td>
+							<td>
+								<p class="para_{{:#index}}">{{:address.city}}</p>
+								<input type="text" value="{{:address.city}}" name="name" id="text_ad_city_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+							</td>
+							<td>
+								<p class="para_{{:#index}}">{{:address.state}}</p>
+								<input type="text" value="{{:address.state}}" name="name" id="text_ad_state_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+							</td>
+							<td>
+								<p class="para_{{:#index}}">{{:address.zipCode}}</p>
+								<input type="Number" value="{{:address.zipCode}}" name="name" id="text_ad_zipCode_id_{{:#index}}" class="form-control cfield{{:#index}}"/>
+							</td>
 						</tr>
 					</table>
 				</td>
 				<td>
-					<table  class="table">
+					<table  class="table mytable1">
 					<tr>
-						<td>{{:dept.deptId}}</td>
-						<td>{{:dept.deptName}}</td>
+						<td>
+							<p class="para_{{:#index}}">{{:dept.deptId}}</p>
+							<input type="Number" value="{{:dept.deptId}}" name="name" id="text_dept_id_id_{{:#index}}" class="form-control cfield{{:#index}}" />
+						</td>
+						<td>
+							<p class="para_{{:#index}}">{{:dept.deptName}}</p>
+							<input type="text" value="{{:dept.deptName}}" name="name" id="text_dept_name_id_{{:#index}}" class="form-control cfield{{:#index}}" />
+						</td>
 					</tr>
 				</table>
 			  </td>
-			  <td><a href="#edit" class="btn btn-success" id="editDataId">Update</a></td>
-			  <td><a href="#delete" class="btn btn-danger" id="deleteDataId">Delete</a></td>
+			  <td><a href="#edit" class="btn btn-success" id="editDataId{{:#index}}" onClick="updateEmployee({{:#index}})">Update</a></td>
+			  <td><a href="#delete" onclick="deleteEmployeeData({{:#index}})" class="btn btn-danger" id="deleteDataId">Delete</a></td>
+			  <td><a href="#save" class="btn btn-primary" onclick="saveEmployeeData({{:#index}})" id="saveUDataId">save</a></td>
 			</tr>
 		{{/for}}
 	</table>

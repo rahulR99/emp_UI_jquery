@@ -36,6 +36,7 @@ var emp={
 	]
 };
 var employee={value:[]};
+
 function getEmployee(){
 	return employee.value;
 }
@@ -50,6 +51,7 @@ function setEmployee(){
 	$.get("http://localhost:8080/ems/employee/list",function(response){
           console.log("data: "+response);
 		employee.value=emp.value.concat(response);
+		realDataEmployee=employee.value;
        });
 };
 
@@ -72,6 +74,9 @@ function saveNewEmployee(){
 			}
   		}
 	employee.value.push(newEmpl);
+	alert("New Employee Added Successfully:");
+	homePageDisplay();
+	showHomeFirst();
 };
 	
 

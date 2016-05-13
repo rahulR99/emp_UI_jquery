@@ -1,9 +1,14 @@
 function showList(){	
 $.get("http://localhost:8000/templates/showlist.tmpl", function(value) {
   var tmpl =$.templates(value); 
-   var data ={emp:getEmployee()};
+  var data ={emp:getEmployee()};
   var html = tmpl.render(data); 
   $("#showList").html(html); 
+	hideInputS();
+	$("#saveUDataId").click(function(){
+		console.log("inside the save ");
+		//hideOneInput();
+	});
 });
 };
 
