@@ -1,10 +1,12 @@
+//variable declarations
 var realDataEmployee=[];
+var employeeCol=new EmployeeCollection([]);
+//main document start from here
 $(document).ready(function(){
 	realDataEmployee=[];
-	setEmployee();
+	getEmployee();
 	homePageDisplay();
 	showHomeFirst();
-	
 	$("#showlistMenu").click(function(){
 		employee.value=realDataEmployee;
 		showList();
@@ -13,7 +15,6 @@ $(document).ready(function(){
 		$("#addEmployeeColId").hide();
 		$("#homePageDataDisplay").hide();
 	});
-	
 	$("#addnewEmployee01").click(function(){
 		addNewEmployeeTmpl();
 		$("#showList").hide();
@@ -26,9 +27,7 @@ $(document).ready(function(){
 		$("#showList").hide();
 		$("#addEmployeeColId").hide();
 	});
-	
 	/****Search Bar************************/
-	
 	$("#searchBarBtnId").click(function(){
 		var value=$("#searchInputId").val();
 		setEmployeeData(searchEmployee(value));
@@ -76,7 +75,6 @@ function saveEmployeeData(index){
 	console.log("save employee data which is updated");
 	hideOneInput(index);
 	var empValue=getEmployee();
-	
 	var indData=realDataEmployee.indexOf(empValue[index]);
 	empValue[index]=dataOfUpdatedEmployee(index,empValue[index].empId);
 	employee.value=empValue;
@@ -105,7 +103,6 @@ function dataOfUpdatedEmployee(index,emplId){
 		return newEmpl;
 };
 
-
 function setEmployeeData(searchEmpData){
 	realDataEmployee=employee.value;
 	employee.value=searchEmpData;
@@ -113,13 +110,7 @@ function setEmployeeData(searchEmpData){
 };
 
 function deleteEmployeeData(index){
-	var empValue=getEmployee();
-	var indData=realDataEmployee.indexOf(empValue[index]);
-	empValue.splice(index,1);
-	//setEmployeeData(empValue);
-	employee.value=empValue;
-	//realDataEmployee[indData]
-	realDataEmployee.splice(indData,1);
+    employeeCol.remove(employeeCol.remove(employeeCol.models[index]));
 	showList();
 };
 
@@ -140,9 +131,47 @@ function searchEmployee(value){
 	for(i=0;i<employeeList.length;i++){
 		console.log("inside the string--"+value);
 		if(employeeList[i].empName == value){
-				 
 				 empl.push(employeeList[i]);
 			}
 	}
 	return empl;
 };
+
+/**********************Save Employee*********************************/
+function saveNewEmployee(){
+	var newEmpl={
+			empId:44,
+			empName:($("#text_name1").val()),
+			salary:($("#text_sal3").val()),
+			empDesg:($('#text_desig2').val()),
+			address:{
+				street:($('#text_ad_street1').val()),
+				city:($('#text_ad_city2').val()),
+				state :($('#text_ad_state3').val()),
+				zipCode:($('#text_ad_zipCode4').val())
+			},
+		dept:{
+				deptId:($('#text_dept_id1').val()),
+				deptName:($('#text_dept_name2').val())
+			}
+  		};
+    console.log("employee going for save--"+JSON.stringify(newEmpl));
+    addNewEmployee(JSON.stringify(newEmpl));
+    var employee=new EmployeeModel(newEmpl);
+    employeeCol.add([newEmpl]);
+	homePageDisplay();
+	showHomeFirst();
+};
+
+//when page will be closed
+window.onbeforeunload = function (e) {
+  var message = "Your confirmation message goes here.",
+  e = e || window.event;
+  // For IE and Firefox
+  if (e) {
+    e.returnValue = message;
+  }
+  // For Safari
+  return message;
+};
+
