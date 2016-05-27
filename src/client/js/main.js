@@ -1,15 +1,16 @@
 //variable declarations
-var realDataEmployee=[];
 var employeeCol=new EmployeeCollection([]);
+
 //main document start from here
 $(document).ready(function(){
-	realDataEmployee=[];
 	getEmployee();
 	homePageDisplay();
 	showHomeFirst();
+    setEmployee();
 	$("#showlistMenu").click(function(){
-		employee.value=realDataEmployee;
+        setEmployee();
 		showList();
+        //location.reload();
 		console.log("inside the show menu");
 		$("#showList").show();
 		$("#addEmployeeColId").hide();
@@ -30,7 +31,7 @@ $(document).ready(function(){
 	/****Search Bar************************/
 	$("#searchBarBtnId").click(function(){
 		var value=$("#searchInputId").val();
-		setEmployeeData(searchEmployee(value));
+		searchEmployee(value);
 		console.log("inside the show menu");
 		$("#showList").show();
 		$("#addEmployeeColId").hide();
@@ -56,19 +57,21 @@ function hideInputS(){
 	var len=getEmployee().length;
 	for(i=0;i<len;i++){
 		$(".cfield"+i).hide();
+        $(".cSaveBtn"+i).attr("disabled",true);
 		console.log(""+".cfield"+i);
 	}
+    
 };
-
 function hideOneInput(i){
 	$(".cfield"+i).hide();
-		$(".para_"+i).show();
+	$(".para_"+i).show();
+    $(".cSaveBtn"+i).attr("disabled",true);
 };
-
 function showInputS(i){
 	//var len=getEmployee().length;
 		$(".cfield"+i).show();
 		$(".para_"+i).hide();
+        $(".cSaveBtn"+i).attr("disabled",false);
 };
 
 function saveEmployeeData(index){
@@ -83,58 +86,40 @@ function saveEmployeeData(index){
 	//setEmployeeData(empValue);
 };
 
-function dataOfUpdatedEmployee(index,emplId){
-		var newEmpl={
-			empId:emplId,
-			empName:($("#text_name_id_"+index).val()),
-			salary:($("#text_sal_id_"+index).val()),
-			empDesg:($('#text_desig_id_'+index).val()),
-			address:{
-				street:($('#text_ad_street_id_'+index).val()),
-				city:($('#text_ad_city_id_'+index).val()),
-				state :($('#text_ad_state_id_'+index).val()),
-				zipCode:($('#text_ad_zipCode_id_'+index).val())
-			},
-		dept:{
-				deptId:($('#text_dept_id_id_'+index).val()),
-				deptName:($('#text_dept_name_id_'+index).val())
-			}
-  		};
-		return newEmpl;
-};
 
-function setEmployeeData(searchEmpData){
-	realDataEmployee=employee.value;
-	employee.value=searchEmpData;
-	showList();
-};
-
-function deleteEmployeeData(index){
-    employeeCol.remove(employeeCol.remove(employeeCol.models[index]));
+//delete an employee
+function deleteEmployeeData(empId,index){
+    employeeCol.remove(employeeCol.models[index]);
+    deleteEmployee(empId);
 	showList();
 };
 
 function searchEmployee(value){
 	console.log("value--"+value);
 	var empl=[];
+    var searchEmployeeDataCol=new EmployeeCollection([]);
 	var employeeList=[];
 	employeeList=getEmployee();
 	if($.isNumeric(value)){
 		console.log("inside numeric section--"+value);
 		for(i=0;i<employeeList.length;i++){
 			if(employeeList[i].empId == value){
-				empl.push(employeeList[i]);
-				return empl;
+				searchEmployeeDataCol.add([employeeList[i]]);
+                //empl.push(employeeList[i]);
+				showSearchList(searchEmployeeDataCol.toJSON());
+                return;
 			}
 		}
 	}
 	for(i=0;i<employeeList.length;i++){
 		console.log("inside the string--"+value);
 		if(employeeList[i].empName == value){
+                searchEmployeeDataCol.add(employeeList[i]);
 				 empl.push(employeeList[i]);
 			}
 	}
-	return empl;
+	showSearchList(searchEmployeeDataCol.toJSON());
+    return;
 };
 
 /**********************Save Employee*********************************/
@@ -156,8 +141,7 @@ function saveNewEmployee(){
 			}
   		};
     console.log("employee going for save--"+JSON.stringify(newEmpl));
-    addNewEmployee(JSON.stringify(newEmpl));
-    var employee=new EmployeeModel(newEmpl);
+    addNewEmployee(newEmpl);
     employeeCol.add([newEmpl]);
 	homePageDisplay();
 	showHomeFirst();
@@ -175,3 +159,28 @@ window.onbeforeunload = function (e) {
   return message;
 };
 
+//update Employee data after click on save button
+function updateEmployeeData(ind,empId1){
+    updateExistEmployee(empId1,getEmployeeDataByIds(ind,empId1));
+    hideOneInput(ind);
+};
+
+function getEmployeeDataByIds(index,emplId){
+		var newEmpl={
+			empId:emplId,
+			empName:($("#text_name_id_"+index).val()),
+			salary:($("#text_sal_id_"+index).val()),
+			empDesg:($('#text_desig_id_'+index).val()),
+			address:{
+				street:($('#text_ad_street_id_'+index).val()),
+				city:($('#text_ad_city_id_'+index).val()),
+				state :($('#text_ad_state_id_'+index).val()),
+				zipCode:($('#text_ad_zipCode_id_'+index).val())
+			},
+		dept:{
+				deptId:($('#text_dept_id_id_'+index).val()),
+				deptName:($('#text_dept_name_id_'+index).val())
+			}
+  		};
+		return newEmpl;
+};

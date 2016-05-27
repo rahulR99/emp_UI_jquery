@@ -31,9 +31,7 @@ $.ajax({
     dataType: 'json',
     contentType: "application/json",
     success:function(res){
-        alert("it works!");
-        homePageDisplay();
-	   showHomeFirst();
+        alert("Employee is added to database!");
     },
     error:function(res){
         alert("Bad thing happend! " + res.statusText);
@@ -46,9 +44,9 @@ function deleteEmployee(empId){
     url:'http://localhost:8080/ems/employee/delete/'+empId,
     type:'DELETE',
     success:function(res){
-        alert("it works!");
-        homePageDisplay();
-	   showHomeFirst();
+        alert("alert from server ::"+res);
+       // homePageDisplay();
+	  // showHomeFirst();
     },
     error:function(res){
         alert("Bad thing happend! " + res.statusText);
@@ -65,7 +63,7 @@ function searchEmployee(empId){
         console.log(JSON.stringify(res));
         alert("it works!");
         homePageDisplay();
-	   showHomeFirst();
+	    showHomeFirst();
     },
     error:function(res){
         alert("Bad thing happend! " + res.statusText);
@@ -73,23 +71,23 @@ function searchEmployee(empId){
 });  
 };
 
-/*function addEmployee(){
+function updateExistEmployee(empId,updateEmp){
     $.ajax({
-    url:'http://localhost:8080/ems/user/create',
-    type:'POST',
-    data:JSON.stringify({name:"rahu",address:"Mumbai"}),
+    url:'http://localhost:8080/ems/employee/update/'+empId,
+    type:'PUT',
+    data:JSON.stringify(updateEmp),
     contentType:"application/json",
     success:function(res){
         console.log(JSON.stringify(res));
-        alert("it works!");
-        homePageDisplay();
-	   showHomeFirst();
+        alert("Employee Updated :"+res);
+        //homePageDisplay();
+	    //showHomeFirst();
     },
     error:function(res){
         alert("Bad thing happend! " + res.statusText);
     }
 });  
-}*/
+}
 
 
 	

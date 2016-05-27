@@ -6,6 +6,7 @@ $.get("http://localhost:8000/templates/showlist.tmpl", function(value) {
   $("#showList").html(html); 
   hideInputS();
   $("#saveUDataId").click(function(){
+      
 		console.log("inside the save ");
 	});
 });
@@ -38,3 +39,17 @@ $.get("http://localhost:8000/templates/addNewEmployee.tmpl", function(value) {
 });
 };
 
+function showSearchList(searchColData){	
+$.get("http://localhost:8000/templates/showlist.tmpl", function(value) {
+  var tmpl =$.templates(value); 
+  var data ={
+      emp:searchColData
+  };
+  var html = tmpl.render(data); 
+  $("#showList").html(html); 
+  hideInputS();
+  $("#saveUDataId").click(function(){
+		console.log("inside the save ");
+	});
+});
+};
